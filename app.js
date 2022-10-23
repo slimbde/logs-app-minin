@@ -16,13 +16,13 @@ const logsPath = path.resolve(__dirname, 'data', 'logs.txt')
 app.get('/', async (req, res) => {
   const data = await fs.readFile(logsPath, 'utf-8')
   const logs = data.split('\r\n').filter(i => !!i)
-  res.render('index', {logs})
+  res.render('index', { logs })
 })
 
 app.post('/', async (req, res) => {
   const text = req.body.text
-  await fs.appendFile(logsPath, `${text}\r\n`)
+  !!text && await fs.appendFile(logsPath, `${text}\r\n`)
   res.redirect('/')
 })
 
-app.listen(port, () => console.log(`Server listening on port ${port}`))
+app.listen(port, () => console.log(`Server listening on http://localhost:${port}`))
