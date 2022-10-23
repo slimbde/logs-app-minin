@@ -33,3 +33,18 @@ So we first copy `package.json` and then we run `npm i` command. It gives us the
 - In Dockerfile we can specify ENV variables. So let's specify `ENV PORT 3000` that means we use 3000 port by default
 - However, we can substitute default value by using `-e` parameter of the command `docker run`  
   `docker run --name ejs --rm -p 3000:4321 -d -e PORT=4321 slimbde/ejs-node` - we run image internally on port 4321
+
+## Volumes
+
+- Are used to save the state of files in a certain directory
+- In `Dockerfile` we should specify `VOLUME ["/app/data"]` for instance to save `/data` folder directory
+- In `docker run` command we specify `docker run -d --name ejs -p 3000:3000 --rm -v ejs:/app/data slimbde/ejs-node`
+
+## Development using volumes
+
+- create anonymous volume for node_modules folder `-v /app/node_modules`
+- create named volume `-v C:/SPA/docker/logs-app-minin:/app`
+- so the full cmd would be like  
+`docker run -d --name ejs -p 3000:3000 --rm -v ejs:/app/data -v /app/node_modules -v "C:/SPA/docker/logs-app-minin:/app" slimbde/ejs-node`
+
+- now we can do any changes in any files and they will be applied to the target image
