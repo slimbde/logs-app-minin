@@ -10,3 +10,12 @@
   detach process,  
   image ejs-node
 
+`docker ps -a`  - show all the containers (nomatter running or stopped)
+`docker ps`     - show running containers
+`docker images` - show image list
+
+## Improvements
+
+- The commands order are relevant in dockerfile.  
+So we first copy `package.json` and then we run `npm i` command. It gives us the advantage of getting further builds of the `node_modules` folder directly from cache.  
+
