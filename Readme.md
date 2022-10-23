@@ -27,3 +27,9 @@ So we first copy `package.json` and then we run `npm i` command. It gives us the
 
 - before pushing don't forget to create the `.dockerignore` file
 - to push to the `https://hub.docker.com` run command `docker push slimbde/ejs-node`
+
+## Environment
+
+- In Dockerfile we can specify ENV variables. So let's specify `ENV PORT 3000` that means we use 3000 port by default
+- However, we can substitute default value by using `-e` parameter of the command `docker run`  
+  `docker run --name ejs --rm -p 3000:4321 -d -e PORT=4321 slimbde/ejs-node` - we run image internally on port 4321
